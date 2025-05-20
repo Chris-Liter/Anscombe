@@ -12,9 +12,9 @@ El **Cuarteto de Anscombe** es un conjunto de cuatro conjuntos de datos creados 
 
 A pesar de que los cuatro conjuntos tienen casi **idénticos valores estadísticos** —media, desviación estándar, coeficiente de correlación, y regresión lineal—, sus distribuciones son completamente diferentes cuando se visualizan gráficamente. Esto evidencia cómo confiar únicamente en los análisis numéricos puede conducir a interpretaciones erróneas de los datos.
 
-A continuación se muestran las gráficas que representan visualmente los cuatro conjuntos del Cuarteto de Anscombe:
+A continuación se muestran las gráficas de ejemplo que representan visualmente los cuatro conjuntos del Cuarteto de Anscombe:
 
-![Cuarteto de Anscombe](https://upload.wikimedia.org/wikipedia/commons/3/3f/Anscombe%27s_quartet_3.svg)
+![image](https://github.com/user-attachments/assets/d15230be-c911-4118-b678-0adbacbe4f55)
 
 Fuente: Wikipedia. [Anscombe's Quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet)
 
