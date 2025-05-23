@@ -56,6 +56,6 @@ Anscombe, F. J. (1973). *Graphs in statistical analysis*. The American Statistic
 ## Directorios
 * data/ -> Tendra los datasets utilizados para la practica
 
-* R/ -> Tendra los archivos realizados en clase en html y 
+* R/ -> Tendra los archivos realizados en clase en **html** y en **Rmd**.
 
 **La herramienta utilizada para la regresión lineal es el mismo R**
