@@ -1,3 +1,4 @@
+
 ---
 title: "DataSaurus 2025"
 author: "Jorge Cristobal Lituma Teran"
@@ -13,24 +14,25 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Este documento fue creado con **R Markdown**, una herramienta que permite combinar código, texto y resultados en un solo archivo reproducible. Es útil para reportes automatizados, análisis y visualizaciones interactivas, practica para la asignatura **Mineria de Datos**.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 ```{r}
-#summary(cars)
+# Cargamos las librerías necesarias para manipulación de datos y visualización.
 library(tidyverse)
 library(datasauRus)
 library(dplyr)
 library(ggplot2)
 ```
 
-## Inicio de codigo
+## Inicio de código
+
+En esta sección se carga el conjunto de datos `datasaurus_dozen`, famoso por demostrar cómo conjuntos de datos con estadísticas idénticas pueden tener distribuciones visualmente muy distintas.
+
 ```{r}
-
-
 print("Inicio del código")
 datasaurus_dozen <- datasauRus::datasaurus_dozen
 
+# Calculamos estadísticas descriptivas para cada dataset dentro del conjunto
 datasaurus_dozen %>%
   group_by(dataset) %>%
   summarize(
@@ -40,17 +42,21 @@ datasaurus_dozen %>%
     std_dev_y = sd(y),
     corr_x_y = cor(x,y)
   )
-
-
 ```
 
+A continuación se realiza una visualización para comparar los diferentes subconjuntos de `datasaurus_dozen`:
+
 ```{r}
+# Visualizamos todos los datasets del conjunto como una grilla de gráficos
 ggplot(datasaurus_dozen, aes(x=x, y=y, colour = dataset))+
   geom_point()+
   theme_void()+
   theme(legend.position = "none")+
   facet_wrap(~dataset,ncol=3)
 ```
+
+El siguiente bloque se centra en uno de los subconjuntos: el dataset `star`.
+
 ```{r}
 datos <- datasaurus_dozen
 
@@ -64,8 +70,12 @@ ggplot(datos_star, aes(x = x, y = y)) +
   labs(title = "Regresión lineal - Dataset: Star", x = "x", y = "y") +
   theme_minimal()
 ```
+
 ## Estrella
-```{R}
+
+Aquí se calcula un modelo de regresión lineal sobre el dataset `star` para entender la relación entre las variables `x` e `y`. Se extraen medidas como pendiente, intercepto, R² y valor-p.
+
+```{r}
 estadisticas_star <- datos_star %>%
   summarize(
     mean_x = mean(x),
@@ -85,19 +95,26 @@ intercepto <- coef(modelo_star)[1]
 r2 <- resumen_modelo$r.squared
 p_valor <- resumen_modelo$coefficients[2,4]
 
-# Mostrar resultados
+# Mostrar resultados estadísticos
 estadisticas_star
+
+# Comentarios adicionales sobre el modelo (puedes descomentar si deseas mostrar texto en consola)
 #cat("\n--- Regresión Lineal ---\n")
 #cat("Ecuación: y =", round(pendiente, 4), "* x +", round(intercepto, 4), "\n")
 #cat("R² =", round(r2, 4), "\n")
 #cat("p-valor (pendiente) =", round(p_valor, 6), "\n")
-
 ```
 
+## Imagen de representación de regresión a mano
 
-## Imagen de representación de regresion a mano
+A continuación se incluye una imagen de una representación manual de la regresión. Esto para comparar la intuición visual con el análisis estadístico automatizado.
 
 ```{r, echo=FALSE}
 knitr::include_graphics("C:/Users/jorge/Downloads/Imagen de WhatsApp 2025-04-03 a las 20.48.57_aba1a560.jpg")
 ```
 
+```
+
+---
+
+```
