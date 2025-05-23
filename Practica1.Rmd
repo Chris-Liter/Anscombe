@@ -1,0 +1,103 @@
+---
+title: "DataSaurus 2025"
+author: "Jorge Cristobal Lituma Teran"
+date: "2025-04-03"
+output:
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+```{r}
+#summary(cars)
+library(tidyverse)
+library(datasauRus)
+library(dplyr)
+library(ggplot2)
+```
+
+## Inicio de codigo
+```{r}
+
+
+print("Inicio del código")
+datasaurus_dozen <- datasauRus::datasaurus_dozen
+
+datasaurus_dozen %>%
+  group_by(dataset) %>%
+  summarize(
+    mean_x = mean(x),
+    mean_y = mean(y),
+    std_dev_x = sd(x),
+    std_dev_y = sd(y),
+    corr_x_y = cor(x,y)
+  )
+
+
+```
+
+```{r}
+ggplot(datasaurus_dozen, aes(x=x, y=y, colour = dataset))+
+  geom_point()+
+  theme_void()+
+  theme(legend.position = "none")+
+  facet_wrap(~dataset,ncol=3)
+```
+```{r}
+datos <- datasaurus_dozen
+
+# Filtrar solo el dataset "star"
+datos_star <- datos %>% filter(dataset == "star")
+
+# Graficar puntos + línea de regresión
+ggplot(datos_star, aes(x = x, y = y)) +
+  geom_point(color = "blue") +
+  geom_smooth(method = "lm", se = TRUE, color = "red") +
+  labs(title = "Regresión lineal - Dataset: Star", x = "x", y = "y") +
+  theme_minimal()
+```
+## Estrella
+```{R}
+estadisticas_star <- datos_star %>%
+  summarize(
+    mean_x = mean(x),
+    mean_y = mean(y),
+    std_dev_x = sd(x),
+    std_dev_y = sd(y),
+    corr_x_y = cor(x, y)
+  )
+
+# Ajustar modelo de regresión lineal
+modelo_star <- lm(y ~ x, data = datos_star)
+resumen_modelo <- summary(modelo_star)
+
+# Extraer info del modelo
+pendiente <- coef(modelo_star)[2]
+intercepto <- coef(modelo_star)[1]
+r2 <- resumen_modelo$r.squared
+p_valor <- resumen_modelo$coefficients[2,4]
+
+# Mostrar resultados
+estadisticas_star
+#cat("\n--- Regresión Lineal ---\n")
+#cat("Ecuación: y =", round(pendiente, 4), "* x +", round(intercepto, 4), "\n")
+#cat("R² =", round(r2, 4), "\n")
+#cat("p-valor (pendiente) =", round(p_valor, 6), "\n")
+
+```
+
+
+## Imagen de representación de regresion a mano
+
+```{r, echo=FALSE}
+knitr::include_graphics("C:/Users/jorge/Downloads/Imagen de WhatsApp 2025-04-03 a las 20.48.57_aba1a560.jpg")
+```
+

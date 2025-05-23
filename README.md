@@ -52,3 +52,10 @@ El Cuarteto de Anscombe es una herramienta educativa poderosa. Enseña que **no 
 **Referencia:**
 
 Anscombe, F. J. (1973). *Graphs in statistical analysis*. The American Statistician, 27(1), 17–21. doi:[10.1080/00031305.1973.10478966](https://doi.org/10.1080/00031305.1973.10478966)
+
+## Directorios
+* data/ -> Tendra los datasets utilizados para la practica
+
+* R/ -> Tendra los archivos realizados en clase en html y 
+
+**La herramienta utilizada para la regresión lineal es el mismo R**
